@@ -1,0 +1,6 @@
+*.retry
+.env
+*.pem
+*.key
+vault-password.txt
+secrets.yml

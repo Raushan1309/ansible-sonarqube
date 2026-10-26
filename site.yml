@@ -1,0 +1,7 @@
+---
+- name: Install SonarQube on active EC2 only
+  hosts: sonarqube_active
+  become: true
+  gather_facts: true
+  roles:
+    - sonarqube

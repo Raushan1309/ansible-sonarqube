@@ -1,0 +1,5 @@
+---
+sonarqube_image: "sonarqube:lts-community"
+postgres_image: "postgres:16"
+sonarqube_install_dir: /opt/sonarqube-stack
+# Set securely at runtime: -e "sonar_db_password=..." or Ansible Vault
