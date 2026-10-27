@@ -1,13 +1,19 @@
+---
 plugin: amazon.aws.aws_ec2
+
 regions:
   - us-east-1
+
 filters:
   instance-state-name: running
-  tag:env: sonarqube
-  tag:role: sonarqube-active
+  vpc-id: "vpc-0e332ee6879530129"
+
 hostnames:
   - private-ip-address
+
 compose:
   ansible_host: private_ip_address
+
 groups:
-  sonarqube_active: "tags.role == 'sonarqube-active'"
+  sonarqube_servers: >-
+    private_ip_address in ['10.0.3.89', '10.0.4.232']
