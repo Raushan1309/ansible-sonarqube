@@ -1,19 +1,15 @@
 ---
+# Optional manual dynamic inventory. Jenkins uses Terraform outputs to build
+# its own temporary inventory for both private EC2 instances.
 plugin: amazon.aws.aws_ec2
-
 regions:
   - us-east-1
-
 filters:
   instance-state-name: running
-  vpc-id: "vpc-0e332ee6879530129"
-
+  tag:env: sonarqube
 hostnames:
   - private-ip-address
-
 compose:
   ansible_host: private_ip_address
-
 groups:
-  sonarqube_servers: >-
-    private_ip_address in ['10.0.3.89', '10.0.4.232']
+  sonarqube_servers: "tags.role | default('') in ['sonarqube-active', 'sonarqube-passive']"
